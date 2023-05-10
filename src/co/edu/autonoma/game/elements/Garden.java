@@ -18,7 +18,6 @@ public class Garden extends Sprite
     
     private Gnome gnome;
     private ArrayList<Apple> apples;
-    private Drawable drawable;
 
     public Garden(int width, int height)
     {
@@ -37,6 +36,7 @@ public class Garden extends Sprite
         int y = (int)(Math.random() * height) - Apple.SIDE;
         
         GoodApple apple = new GoodApple(x, y);
+        apple.setDrawable(this);
         
         apples.add(apple);
     }
@@ -47,6 +47,18 @@ public class Garden extends Sprite
         int y = (int)(Math.random() * height) - Apple.SIDE;
         
         BadApple apple = new BadApple(x, y);
+        apple.setDrawable(this);
+        
+        apples.add(apple);
+    }
+    
+    public void addGhostApple()
+    {
+        int x = (int)(Math.random() * width) - GhostApple.SIDE;
+        int y = (int)(Math.random() * height) - GhostApple.SIDE;
+        
+        GhostApple apple = new GhostApple(x, y);
+        apple.setDrawable(this);
         
         apples.add(apple);
     }
@@ -66,12 +78,23 @@ public class Garden extends Sprite
         if(key == KeyEvent.VK_A)
         {
             addGoodApple();
-            drawable.redraw();
+            
+            if(drawable != null)
+                redraw();
         }
         if(key == KeyEvent.VK_S)
         {
             addBadApple();
-            drawable.redraw();
+            
+            if(drawable != null)
+                redraw();
+        }
+        if(key == KeyEvent.VK_G)
+        {
+            addGhostApple();
+            
+            if(drawable != null)
+                redraw();
         }
     }
     
@@ -102,10 +125,13 @@ public class Garden extends Sprite
 
     @Override
     public void redraw() {
-        drawable.redraw();
+        if(drawable != null)
+            drawable.redraw();
     }
-
-    public void setDrawable(Drawable drawable) {
-        this.drawable = drawable;
+    
+    @Override
+    public void redraw(int x, int y, int width, int height) {
+        if(drawable != null)
+            drawable.redraw(x, y, width, height);
     }
 }

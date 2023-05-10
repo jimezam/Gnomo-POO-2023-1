@@ -17,7 +17,6 @@ public class Gnome extends Sprite {
     public final int GROWTH_FACTOR = 10;
     
     private int step;
-    private Drawable drawable;
 
     public Gnome(int x, int y)
     {
@@ -40,7 +39,8 @@ public class Gnome extends Sprite {
            key == KeyEvent.VK_DOWN)
         {
             if(move(key))
-                drawable.redraw();
+                if(drawable != null)
+                    drawable.redraw();
         }
     }
     
@@ -124,9 +124,5 @@ public class Gnome extends Sprite {
     {
         width -= GROWTH_FACTOR;
         height -= GROWTH_FACTOR;
-    }
-
-    public void setDrawable(Drawable drawable) {
-        this.drawable = drawable;
     }
 }

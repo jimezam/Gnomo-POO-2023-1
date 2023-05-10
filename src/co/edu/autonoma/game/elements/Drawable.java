@@ -10,4 +10,6 @@ package co.edu.autonoma.game.elements;
  */
 public interface Drawable {
     public void redraw();
+   
+    public void redraw(int x, int y, int width, int height);
 }

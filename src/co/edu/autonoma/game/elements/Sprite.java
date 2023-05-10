@@ -15,7 +15,9 @@ public abstract class Sprite {
     protected int y;
     protected int width;
     protected int height;
+    
     protected Dimensionable area;
+    protected Drawable drawable;
     
     public Sprite(int x, int y, int width, int height)
     {
@@ -62,7 +64,11 @@ public abstract class Sprite {
     public void setArea(Dimensionable area) {
         this.area = area;
     }
-    
+
+    public void setDrawable(Drawable drawable) {
+        this.drawable = drawable;
+    }
+
     public boolean checkCollision(Sprite sprite)
     {
         if(this.getX() < sprite.getX() + sprite.getWidth() &&

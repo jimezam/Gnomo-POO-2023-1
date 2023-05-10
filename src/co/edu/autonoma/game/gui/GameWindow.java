@@ -78,7 +78,8 @@ public class GameWindow
             garden.handleKey(evt.getKeyCode());
         
         if(evt.getKeyCode() == KeyEvent.VK_A |
-           evt.getKeyCode() == KeyEvent.VK_S)
+           evt.getKeyCode() == KeyEvent.VK_S | 
+           evt.getKeyCode() == KeyEvent.VK_G)
             garden.handleKey(evt.getKeyCode());  
         
 //        repaint();
@@ -103,6 +104,12 @@ public class GameWindow
     @Override
     public void redraw() {
         repaint();
+    }
+    
+    @Override
+    public void redraw(int x, int y, int width, int height)
+    {
+        repaint(x, y, width, height);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
